@@ -1,0 +1,4 @@
+﻿@model List<Suburbs>
+
+@Html.DropDownList("SelectedSuburb", (SelectList)ViewBag.SuburbList, "Select a Suburb", new { @class = "form-control" })
+<input type="submit" value="Save">

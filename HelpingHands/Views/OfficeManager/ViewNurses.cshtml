@@ -1,0 +1,140 @@
+﻿@model IEnumerable<HelpingHands.Models.UserModel>
+
+@{
+    ViewData["Title"] = "ViewNurses";
+    Layout = "~/Views/Shared/_OfficeManager.cshtml";
+}
+
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css" integrity="sha256-2XFplPlrFClt0bIdPgpz8H7ojnk10H69xRqd9+uTShA=" crossorigin="anonymous" />
+
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css">
+
+</head>
+
+<div class='dashboard-app'>
+    <header class='dashboard-toolbar'>
+        <a href="#!" class="menu-toggle"><i class="fas fa-bars"></i></a>
+    </header>
+    <div class='dashboard-content'>
+        <div class='container'>
+
+
+            <button>
+                <a asp-action="AddNurses">Add a New Nurse</a>
+            </button>
+
+            <form method="get" action="@Url.Action("ViewNurses", "OfficeManager")">
+                <div class="form-group">
+                    <label for="userTypeFilter"> <i class="bi bi-filter"></i>Filter by User Type:</label>
+                    <select class="form-control" id="userTypeFilter" name="userTypeFilter">
+                        <option value="">All</option>
+                        <option value="A">Admin</option>
+                        <option value="N">Nurses</option>
+                        <option value="P">Patients</option>
+                        <option value="O">Office Manager</option>
+                    </select>
+                    <button type="submit" class="btn btn-primary">Filter</button>
+                </div>
+
+            </form>
+
+
+            <table class="table table-bordered table-striped" id="userTable">
+
+                <thead>
+                    <tr>
+
+                        <th>
+                            @Html.DisplayNameFor(model => model.Username )
+                        </th>
+
+                        <th>
+                            @Html.DisplayNameFor(model => model.EmailAddress)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.ContactNumber)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.UserType)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Status)
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Username)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.EmailAddress)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ContactNumber)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.UserType)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Status)
+                            </td>
+                            <td>
+                                <div class="btn-group">
+                                    @Html.ActionLink("Update", "AddUsers", new { id=item.UserId } ,new { @class = "btn btn-primary margin-left:2px;" })
+                                </div>
+
+                            </td>
+
+                        </tr>
+                    }
+                </tbody>
+
+
+            </table>
+
+        </div>
+    </div>
+</div>
+
+
+
+
+<script>
+    $(document).ready(function () {
+        $("#search").on("keyup", function () {
+            var value = $(this).val().toLowerCase();
+            $("#userTable tbody tr").filter(function () {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
+    });
+</script>
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/2.2.2/js/dataTables.buttons.min.js"></script>
+
+<script type="text/javascript" src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        var table = $('#userTable').DataTable();
+
+        $('#userTypeFilter').change(function () {
+            var userType = $(this).val();
+            if (userType === "") {
+                table.columns(3).search('').draw();
+            } else {
+                table.columns(3).search('^' + userType + '$', true, false).draw();
+            }
+        });
+    });
+
+</script>
+

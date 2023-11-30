@@ -1,0 +1,74 @@
+﻿@model HelpingHands.Models.OfficeManager
+
+@{
+    ViewData["Title"] = "UpdateCareContract";
+     Layout = "~/Views/Shared/_OfficeManager.cshtml";
+}
+
+<head>
+
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css" integrity="sha256-2XFplPlrFClt0bIdPgpz8H7ojnk10H69xRqd9+uTShA=" crossorigin="anonymous" />
+
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+
+</head>
+
+
+<div class='dashboard-app'>
+    <header class='dashboard-toolbar'>
+        <a href="#!" class="menu-toggle"><i class="fas fa-bars"></i></a>
+    </header>
+    <div class='dashboard-content'>
+        <div class='container'>
+            <p>Assign Care Contract</p>
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="UpdateCareContract">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="CareContractId" class="control-label" hidden></label>
+                <input asp-for="CareContractId" class="form-control" hidden />
+                <span asp-validation-for="CareContractId" class="text-danger"></span>
+            </div>
+           
+            <div class="form-group">
+                <label asp-for="StartDate">Start Date:</label>
+                <input asp-for="StartDate" type="date" name="StartDate" id="StartDate" required min="@DateTime.Now.ToString("yyyy-MM-dd")" max="@DateTime.Now.ToString("yyyy-MM-dd")">
+                <span asp-validation-for="StartDate" class="text-danger"></span>
+            </div>
+           
+            <div class="form-group">
+                <label asp-for="ContractStatus">Contract Status:</label>
+                <select name="ContractStatus" id="ContractStatus" required>
+                    <option value="Assign">Assign</option>
+
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="NurseId">Nurse</label>
+
+                <select asp-for="NurseId" class="form-control" >
+                                @foreach( var item  in ViewBag.NurseList)
+                                {
+                                    <option value="@item.NurseId">@item.FirstName</option>   
+                                }
+                            </select>
+                <span asp-validation-for="NurseId" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+</div>
+</div>
+</div>

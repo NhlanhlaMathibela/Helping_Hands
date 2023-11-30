@@ -1,0 +1,29 @@
+﻿@model HelpingHands.Models.Suburbs
+@{
+    ViewData["Title"] = "AddPreferredSub";
+
+}
+ 
+<h1>Add your preferred Sub</h1>
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="NurseSuburbs" method="post">
+
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-goup">
+                <label asp-for="PreferredSub">Choose Suburb</label>
+                <select asp-for="PreferredSub" class="form-control w-100">
+                    <option value="" selected>--Select Suburb--</option>
+                    @foreach (var suburb in ViewBag.SuburbList)
+                    {
+                        <option value="@suburb.SuburbId">@suburb.SuburbName</option>
+                    }
+                </select>
+
+            </div>
+            <input type="submit" value="Save">
+        </form>
+    </div>
+</div>

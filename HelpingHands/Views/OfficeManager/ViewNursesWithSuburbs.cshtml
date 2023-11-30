@@ -1,0 +1,128 @@
+﻿@model IEnumerable<HelpingHands.Models.PreferredSuburb>
+
+@{
+    ViewData["Title"] = "ViewNurses";
+    Layout = "~/Views/Shared/_OfficeManager.cshtml";
+}
+
+<head>
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css" integrity="sha256-2XFplPlrFClt0bIdPgpz8H7ojnk10H69xRqd9+uTShA=" crossorigin="anonymous" />
+
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css">
+
+</head>
+
+<div class='dashboard-app'>
+    <header>
+        <h1 id="printTitle">Helping Hands</h1>
+        <img src="~/Images/Helping_Hands_Logo_JPG.jpg"
+             height="100"
+             width="150"
+             alt="Helping Hands Logo"
+             loading="lazy" />
+        <p id="printDates">DateTime</p>
+        <p id="printDescription">REPORT</p>
+    </header>
+    <div class='dashboard-content'>
+        <div class='container'>
+
+
+            <button>
+                <a asp-action="ViewNursesWithSuburbs">Report</a>
+            </button>
+
+            <table class="table table-bordered table-striped" id="userTable">
+
+                <thead>
+                    <tr>
+
+                        <th>
+                            @Html.DisplayNameFor(model => model.FirstName )
+                        </th>
+
+                        <th>
+                            @Html.DisplayNameFor(model => model.LastName)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.SuburbName)
+                        </th>
+
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.FirstName)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.LastName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.SuburbName)
+                            </td>
+                           
+                            <td>
+                                <div class="btn-group">
+                                    @Html.ActionLink("More Details", "AddUsers",  new { @class = "btn btn-primary margin-left:2px;" })
+                                </div>
+
+                            </td>
+
+                        </tr>
+                    }
+                </tbody>
+
+
+            </table>
+            <button onclick="printTable()">Print</button>
+
+        </div>
+    </div>
+</div>
+
+
+
+
+<script>
+    $(document).ready(function () {
+        $("#search").on("keyup", function () {
+            var value = $(this).val().toLowerCase();
+            $("#userTable tbody tr").filter(function () {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
+    });
+</script>
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/2.2.2/js/dataTables.buttons.min.js"></script>
+
+<script type="text/javascript" src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        var table = $('#userTable').DataTable();
+
+        $('#userTypeFilter').change(function () {
+            var userType = $(this).val();
+            if (userType === "") {
+                table.columns(3).search('').draw();
+            } else {
+                table.columns(3).search('^' + userType + '$', true, false).draw();
+            }
+        });
+    });
+    function printTable() {
+        window.print();
+    }
+
+
+</script>
+
+

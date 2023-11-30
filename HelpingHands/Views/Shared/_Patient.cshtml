@@ -1,0 +1,86 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css" integrity="sha256-2XFplPlrFClt0bIdPgpz8H7ojnk10H69xRqd9+uTShA=" crossorigin="anonymous" />
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="~/css/PatientDashboard.css" />
+
+    <script type="module"
+            src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule
+            src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+   
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="~/js/site.js"></script>
+</head>
+<body>
+    <div class='dashboard'>
+        <div class="dashboard-nav">
+            <header>
+                <a href="#!" class="menu-toggle"><i class="fas fa-bars"></i></a>
+                <a href="#"
+                  <img src="~/Images/Helping_Hands_Logo_JPG.jpg"
+                         height="50"
+                         width="50"
+                         alt="Helping Hands Logo"
+                         loading="lazy" />
+                    <span>Helping Hands</span>
+                </a>
+               
+            </header>
+            <nav class="dashboard-nav-list">
+                <a href="#" class="dashboard-nav-item">
+                    <i class="fas fa-home"></i>
+                    Home
+                </a><a href="#" class="dashboard-nav-item active">
+                    <i class="fas fa-tachometer-alt"></i>PATIENT
+                </a><a href="~/Patient/ManagePatientConditions" class="dashboard-nav-item"><i class="fas fa-question-circle"></i>Help</a>
+                <div class='dashboard-nav-dropdown'>
+                    <a href="#!" class="dashboard-nav-item dashboard-nav-dropdown-toggle">
+                        <i class="fas fa-home"></i>
+                       Profile
+                    </a>
+                    <div class='dashboard-nav-dropdown-menu'>
+                        <a href="~/Patient/AddPatientDetails"
+                           class="dashboard-nav-dropdown-item">Update personal Info</a><a href="~/Patient/ViewProfile" class="dashboard-nav-dropdown-item">View Profile</a><a href="~/Patient/ManagePatientConditions" class="dashboard-nav-dropdown-item">My conditions</a><a href="~/Patient/UpdatePassword" class="dashboard-nav-dropdown-item">Change Password</a>
+                    </div>
+                </div>
+                <div class='dashboard-nav-dropdown'>
+                    <a href="#!" class="dashboard-nav-item dashboard-nav-dropdown-toggle">
+                        <i class="fas fa-file"></i>
+                     Care Contract
+                    </a>
+                    <div class='dashboard-nav-dropdown-menu'>
+                        <a href="~/Patient/AddCareContract"
+                           class="dashboard-nav-dropdown-item">Request Care</a><a href="/Dashboard/Patient" class="dashboard-nav-dropdown-item">View Contracts</a><a href="~/Patient/PatientContract"
+                           class="dashboard-nav-dropdown-item">Cancel Contract</a><a href="#" class="dashboard-nav-dropdown-item">Contract Status</a>
+                    </div>
+                </div>
+                <div class='dashboard-nav-dropdown'>
+                    <a href="#!" class="dashboard-nav-item dashboard-nav-dropdown-toggle">
+                        <i class="fas fa-medkit"></i>
+                       Care Visits
+                    </a>
+                    <div class='dashboard-nav-dropdown-menu'>
+                        <a href="#!"
+                           class="dashboard-nav-dropdown-item">All</a><a href="#" class="dashboard-nav-dropdown-item">Recent</a><a href="#" class="dashboard-nav-dropdown-item"> Wound Progress</a>
+                    </div>
+                </div>
+                
+                <div class="nav-item-divider"></div>
+                <a href="#" class="dashboard-nav-item"><i class="fas fa-sign-out-alt"></i> Logout </a>
+            </nav>
+        </div>
+
+
+        <div style="width: 100%" class="main-app">
+            @RenderBody()
+        </div>
+</body>
+</html>
+
+
+

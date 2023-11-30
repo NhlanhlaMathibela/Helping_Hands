@@ -1,0 +1,146 @@
+﻿ @model HelpingHands.Models.PatientCareContract
+
+@{
+	ViewData["Title"] = "AddCareContract";
+	
+}
+
+<style>
+	* {
+		box-sizing: border-box;
+		margin: 0;
+		padding: 0;
+	}
+
+	body {
+		background-color: aliceblue;
+		font-family: sans-serif;
+	}
+
+	h1 {
+		font-size: 2.2rem;
+		background: linear-gradient( to right, lightgreen 0%, lightgreen 40%, #0b3d88 60% );
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		text-align: center;
+		filter: drop-shadow(2px 2px black);
+		margin: 2% 0;
+	}
+
+	.form-container {
+		padding: 15px;
+		max-width: 750px;
+		margin: 0 auto;
+	}
+
+	input,
+	textarea {
+		border: 0;
+	}
+
+	[type="submit"] {
+		background: white;
+		color: royalblue;
+		text-shadow: 1px 1px 1px black;
+		font-size: 1.4rem;
+		text-transform: uppercase;
+		text-align: center;
+		padding: 12px 60px;
+		width: 100%;
+		cursor: pointer;
+	}
+
+	.zeile {
+		display: flex;
+		flex-wrap: wrap;
+		column-gap: 2%;
+	}
+
+		.zeile .input-container {
+			flex: 1 0 200px;
+		}
+
+	.input-container {
+		background: white;
+		padding: 16px;
+		margin-bottom: 20px;
+		position: relative;
+		border: solid 1px #777;
+	}
+
+		.input-container textarea {
+			resize: none;
+			outline: none;
+		}
+
+		.input-container input,
+		.input-container textarea {
+			font-size: 1.1rem;
+			color: #333;
+			outline: none;
+			width: 100%;
+			background: transparent;
+			position: relative;
+			z-index: 2;
+		}
+
+		.input-container label {
+			color: grey;
+			position: absolute;
+			left: 16px;
+			top: 16px;
+			z-index: 1;
+			font-size: 1.1rem;
+			transition: 0.5s;
+		}
+
+	input:placeholder-shown + label,
+	textarea:placeholder-shown + label {
+		top: 16px;
+		font-size: 1.1rem;
+	}
+
+	input:not(:placeholder-shown) + label,
+	textarea:not(:placeholder-shown) + label {
+		top: 2px;
+		font-size: 0.8rem;
+	}
+
+	input:focus + label,
+	textarea:focus + label {
+		top: 2px;
+		font-size: 0.8rem;
+	}
+
+</style>
+
+
+
+<h1>Request a Care Contract</h1>
+<section class="form-container">
+	<form action="">
+		<div class="zeile">
+			<div class="input-container">
+				<input type="text" id="vorname" placeholder="">
+				<label for="vorname">Name</label>
+			</div>
+			<div class="input-container">
+				<input type="text" id="zuname" placeholder="">
+				<label for="zuname">Surname</label>
+			</div>
+		</div>
+		<div class="input-container">
+			<input type="text" id="email" placeholder="">
+			<label for="email">Email</label>
+		</div>
+		<select class="input-container">
+			<input type="text" id="betreff" placeholder="Suburb">
+			<label for="selectOption">Suburb</label>
+		</select>
+		<div class="input-container">
+			<textarea id="nachricht" rows="5" placeholder=""></textarea>
+			<label for="nachricht">Wound Description</label>
+		</div>
+		<input type="submit" value="Submit">
+	</form>
+</section>

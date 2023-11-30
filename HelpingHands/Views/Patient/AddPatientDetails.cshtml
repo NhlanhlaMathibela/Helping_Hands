@@ -1,0 +1,85 @@
+﻿@model HelpingHands.Models.PatientDetails
+
+@{
+    ViewData["Title"] = "AddPatientDetails";
+    Layout = "~/Views/Shared/_Patient.cshtml";
+}
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    
+</head>
+<div class='dashboard-app'>
+    <header class='dashboard-toolbar'><a href="#!" class="menu-toggle"><i class="fas fa-bars"></i></a></header>
+    <div class='dashboard-content'>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css" integrity="sha256-2XFplPlrFClt0bIdPgpz8H7ojnk10H69xRqd9+uTShA=" crossorigin="anonymous" />
+ <div class="container">
+     <div class="main-body">
+           
+
+            <p>Add your details</p>
+            <hr />
+
+  <div class="row">
+    <div class="col-md-4">
+        <form asp-action="AddPatientDetails">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                <label asp-for="FirstName" class="control-label"></label>
+                <input asp-for="FirstName" class="form-control" />
+                <span asp-validation-for="FirstName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LastName" class="control-label"></label>
+                <input asp-for="LastName" class="form-control" />
+                <span asp-validation-for="LastName" class="text-danger"></span>
+            </div>
+            
+                <div class="form-group">
+                    <label asp-for="Gender">Gender:</label>
+                    <select asp-for="Gender" asp-items="@(new SelectList(new List<string>(){ "M", "F" }))" class="form-control custom-dropdown">
+                        <option>Please select one</option>
+                    </select>
+                    <span asp-validation-for="Gender" class="text-danger"></span>
+                </div>
+          
+            <div class="form-group">
+                <label asp-for="DOB">Date of Birth:</label>
+                <input asp-for= "DOB" type="date" id="DOB" name="DOB" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="NextOfKin" class="control-label"></label>
+                <input asp-for="NextOfKin" class="form-control" />
+                <span asp-validation-for="NextOfKin" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NextOfKinContact" class="control-label"></label>
+                <input asp-for="NextOfKinContact" class="form-control" />
+                <span asp-validation-for="NextOfKinContact" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Submit"  class="btn btn-primary" />
+            </div>
+        </form>
+                        <div>
+                            <a asp-action="ViewProfile">Back</a>
+                        </div>
+    </div>
+</div>
+
+
+</div>
+</div>
+</div>
+</div>
+
+
+<script>
+    $(function () {
+        $("#DOB").datepicker({
+            dateFormat: "yy-mm-dd" 
+        });
+    });
+</script>

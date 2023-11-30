@@ -1,0 +1,100 @@
+﻿@model HelpingHands.Models.UserModel
+@{
+    ViewData["Title"] = "Patient";
+    Layout = "~/Views/Shared/_Patient.cshtml";
+}
+
+<style>
+    .container {
+        margin: auto;
+        margin-bottom: 10px;
+        margin-left:100px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+    }
+    .card-img-top{
+        width:200px;
+        height:100px;
+      
+    }
+    .container-table{
+        margin-left:50px;
+        width:70rem;
+      
+
+    }
+    .card{
+        align-items: center;
+    }
+     h5 {
+
+     }
+
+    * {
+        font-family: roboto, sans-serif;
+    }
+
+ 
+ 
+</style>
+
+<div class='dashboard-app'>
+    <header class='dashboard-toolbar'>
+        <a href="#!" class="menu-toggle"><i class="fas fa-bars"></i></a><div class="col-sm-9 text-secondary">
+            Hello, @Model.Username
+        </div>
+    </header>
+   
+    <div class='dashboard-content'>
+        <div class='container'>
+
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css" integrity="sha256-2XFplPlrFClt0bIdPgpz8H7ojnk10H69xRqd9+uTShA=" crossorigin="anonymous" />
+
+<div class="row row-cols-1 row-cols-md-3 g-4">
+   
+    <div class="container">
+    <div class="col">
+
+        <div class="card">
+            <img src="~/Images/Profile data-bro.png" class="card-img-top" alt="...">
+            <div class="card-body">
+                <a class="card-title" href="~/Patient/ViewProfile">My Profile</a>
+              
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="card">
+            <img src="~/Images/businessman-signing-contract-vector-24265366.jpg" class="card-img-top" alt="...">
+            <div class="card-body">
+                <a class="card-title" href="~/Patient/GetConditions">My Care Contracts</a>
+             
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="card">
+            <img src="~/Images/cartoon-sweet-nurse-feeding-old-lady-in-bed-vector-23582372.jpg" class="card-img-top" alt="...">
+            <div class="card-body">
+                <a class="card-title">My Care Visits</a>
+             
+            </div>
+        </div>
+    </div>
+                   
+    </div>
+   
+</div>
+</div>
+</div>
+</div>
+
+
+
+      
+           
+            
+
+     

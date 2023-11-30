@@ -1,0 +1,193 @@
+﻿@model IEnumerable<HelpingHands.Models.UserModel>
+
+@{
+    ViewData["Title"] = "All Users";
+    Layout = "~/Views/Shared/_Dashboards.cshtml";
+}
+
+
+
+
+<head>
+
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css" integrity="sha256-2XFplPlrFClt0bIdPgpz8H7ojnk10H69xRqd9+uTShA=" crossorigin="anonymous" />
+
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/2.2.2/css/buttons.dataTables.min.css">
+
+   
+  
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css">
+
+   
+
+
+
+</head>
+
+<div class='dashboard-app'>
+    <header class='dashboard-toolbar'>
+        <a href="#!" class="menu-toggle"><i class="fas fa-bars"></i></a>
+    </header>
+    <div class='dashboard-content'>
+        <div class='container'>
+            <form method="get" action="@Url.Action("AllUsers", "Admin")">
+                <div class="form-group">
+                    <label for="userTypeFilter"> <i class="bi bi-filter"></i>Filter by User Type:</label>
+                    <select class="form-control" id="userTypeFilter" name="userTypeFilter">
+                        <option value="">All</option>
+                        <option value="A">Admin</option>
+                        <option value="N">Nurses</option>
+                        <option value="P">Patients</option>
+                        <option value="O">Office Manager</option>
+                    </select>
+                    <button type="submit" class="btn btn-primary">Filter</button>
+                </div>
+              
+            </form>
+            <h1 id="printTitle">Helping Hands</h1>
+            <img id="printLogo" src="~/Images/Profile data-bro.png" class="card-img-top" alt="...">
+            <p id="printDates">DateTime</p>
+            <p id="printDescription">REPORT</p>
+
+
+            <table id="userTable" class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+
+                            <th>
+                                @Html.DisplayNameFor(model => model.Username )
+                            </th>
+
+                            <th>
+                                @Html.DisplayNameFor(model => model.EmailAddress)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.ContactNumber)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.UserType)
+                            </th>
+                        <th class="hidden-print">
+                            @Html.DisplayNameFor(model => model.Status)
+                        </th>
+                            <th class="hidden-print"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Username)
+                                </td>
+
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.EmailAddress)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ContactNumber)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.UserType)
+                                </td>
+                            <td class="hidden-print">
+                                @Html.DisplayNameFor(model => model.Status)
+                            </td>>
+                            <td class="hidden-print">
+                                <div class="btn-group ">
+                                        @Html.ActionLink("Update", "AddUsers", new { id=item.UserId } ,new { @class = "btn btn-primary margin-left:2px;" })
+                                    </div>
+
+                                </td>
+
+                            </tr>
+                        }
+                    </tbody>
+
+           
+                </table>
+            <button class="btn btn-primary" onclick="printTable()">
+                <i class="fas fa-print"></i> Print
+            </button>
+
+
+            <button class="btn btn-primary" onclick="history.back()">
+                <i class="fas fa-arrow-left"></i> Back
+            </button>
+
+            </div>
+        </div>
+    </div>
+
+
+<script>
+   document.addEventListener('DOMContentLoaded', function () {
+    document.getElementById('userTypeFilter').addEventListener('change', function () {
+        var userType = this.value.toUpperCase(); // Get the selected user type
+        var table = document.getElementById("userTable"); // Get the table
+        var tr = table.getElementsByTagName("tr"); // Get the table rows
+
+        // Loop through all table rows
+        for (var i = 0; i < tr.length; i++) {
+            var td = tr[i].getElementsByTagName("td")[3]; // Get the fourth column (User Type)
+            if (td) {
+                var txtValue = td.textContent || td.innerText;
+                // If the row's user type matches the selected user type, or if "All" is selected, show the row. Otherwise, hide it.
+                if (txtValue.toUpperCase() === userType || userType === "") {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    });
+});
+
+
+</script>
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/2.2.2/js/dataTables.buttons.min.js"></script>
+
+<script type="text/javascript" src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        var table = $('#userTable').DataTable();
+
+        $('#userTypeFilter').change(function () {
+            var userType = $(this).val();
+            if (userType === "") {
+                table.columns(3).search('').draw();
+            } else {
+                table.columns(3).search('^' + userType + '$', true, false).draw();
+            }
+        });
+    });
+
+</script>
+
+<script>
+    function printTable() {
+        var printTitle = document.getElementById('printTitle').textContent;
+        var printLogo = document.getElementById('printLogo').src;
+        var printDates = document.getElementById('printDates').textContent;
+        var printDescription = document.getElementById('printDescription').textContent;
+        var printTable = document.getElementById('userTable').cloneNode(true);
+
+        var printWindow = window.open('', '_blank');
+        printWindow.document.write('<html><head><title>' + printTitle + '</title></head><body>');
+        printWindow.document.write('<img src="' + printLogo + '" alt="Logo">');
+        printWindow.document.write('<p>' + printDates + '</p>');
+        printWindow.document.write('<h1>' + printDescription + '</h1>');
+        printWindow.document.write(printTable.outerHTML);
+        printWindow.document.write('</body></html>');
+        printWindow.document.close();
+        printWindow.print();
+    }
+
+
+</script>

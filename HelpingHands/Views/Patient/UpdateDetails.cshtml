@@ -1,0 +1,78 @@
+﻿@model HelpingHands.Models.PatientDetails
+
+@{
+    ViewData["Title"] = "Update Details";
+  
+
+}
+<div class="row">
+    <div class="col-md-12">
+        <form asp-action="UpdateDetails">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="container">
+            <div class="main-body">
+
+                <div class="col-md-8">
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <h6 class="mb-0">First Name</h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                        <input asp-for="FirstName" class="form-control" />  
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <h6 class="mb-0">Last Name</h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                        <input asp-for="LastName" class="form-control" />
+                                </div>
+                            </div>
+                            <hr>
+                     
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <h6 class="mb-0">Next of Kin </h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                        <input asp-for="NextOfKin" class="form-control" />
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <h6 class="mb-0">Next of Kin Contact</h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                        <input asp-for="NextOfKinContact" class="form-control" />
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                        <div class="form-group">
+                                            <input type="submit" value="Save" class="btn btn-primary" />
+                                        </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+
+
+                </div>
+            </div>
+
+        </div>
+ </form>
+ </div>
+ </div>
+ 

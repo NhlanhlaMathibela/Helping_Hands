@@ -1,0 +1,20 @@
+﻿@model IEnumerable<CitySuburb>
+
+<table>
+    <thead>
+        <tr>
+            <th>Suburb Name</th>
+            <th>City Name</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var suburb in Model)
+        {
+            <tr>
+                <td>@suburb.SuburbName</td>
+                <td>@suburb.CityName</td>
+            </tr>
+        }
+    </tbody>
+</table>
+

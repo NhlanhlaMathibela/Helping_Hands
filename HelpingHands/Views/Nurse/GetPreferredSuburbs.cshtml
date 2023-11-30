@@ -1,0 +1,37 @@
+﻿@model IEnumerable<HelpingHands.Models.PreferredSuburb>
+@{
+    ViewData["Title"] = "My Suburbs";
+    Layout = "~/Views/Shared/_Nurse.cshtml";
+}
+<head>
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css" integrity="sha256-2XFplPlrFClt0bIdPgpz8H7ojnk10H69xRqd9+uTShA=" crossorigin="anonymous" />
+
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+</head>
+
+<div class='dashboard-app'>
+    <header class='dashboard-toolbar'>
+        <a href="#!" class="menu-toggle"><i class="fas fa-bars"></i></a>
+    </header>
+    <div class='dashboard-content'>
+        <div class='container'>
+
+    <h2>Preferred Suburbs</h2>
+
+            <ul>
+                @foreach (var preferredSuburb in Model)
+                {
+                    <li>@preferredSuburb.SuburbName</li>
+                }
+            </ul>
+
+
+</div>
+</div>
+</div>
+
+

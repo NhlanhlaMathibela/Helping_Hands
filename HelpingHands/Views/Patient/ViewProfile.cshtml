@@ -1,0 +1,88 @@
+﻿@model HelpingHands.Models.Patient
+
+@{
+    ViewData["Title"] = "My Profile";
+    Layout = "~/Views/Shared/_Patient.cshtml";
+
+}
+<head>
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="~/css/Profile.css" />
+</head>
+
+<div class='dashboard-app'>
+    <header class='dashboard-toolbar'><a href="#!" class="menu-toggle"><i class="fas fa-bars"></i></a></header>
+    <div class='dashboard-content'>
+<div class="container">
+    <div class="main-body">
+                <p>My Profile</p>
+            <div class="col-md-8">
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <h6 class="mb-0">First Name</h6>
+                            </div>
+                            <div class="col-sm-9 text-secondary">
+                            @Model.FirstName
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <h6 class="mb-0">Last Name</h6>
+                            </div>
+                            <div class="col-sm-9 text-secondary">
+                               @Model.LastName
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <h6 class="mb-0">Contact Number</h6>
+                            </div>
+                            <div class="col-sm-9 text-secondary">
+                               @Model.ContactNumber
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <h6 class="mb-0">Next of Kin </h6>
+                            </div>
+                            <div class="col-sm-9 text-secondary">
+                              @Model.NextOfKin
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <h6 class="mb-0">Next of Kin Contact</h6>
+                            </div>
+                            <div class="col-sm-9 text-secondary">
+                              @Model.NextOfKinContact
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <a class="btn btn-info " type="submit "href="~/Patient/UpdateDetails">Edit</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+               
+              
+
+
+
+            </div>
+        </div>
+
+    </div>
+
+    </div>
+    </div>
+    
+ 

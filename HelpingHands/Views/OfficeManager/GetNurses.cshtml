@@ -1,0 +1,29 @@
+﻿@model HelpingHands.Models.OfficeManager
+@{
+    ViewData["Title"] = "GetNurses";
+
+}
+
+<h1>Add your preferred Sub</h1>
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="GetNurses" method="post">
+
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-goup">
+                <label asp-for="FirstName">Choose Nurse</label>
+                <select asp-for="FirstName" class="form-control w-100">
+                    <option value="" selected>--Select Nurse--</option>
+                    @foreach (var nurses in ViewBag.NurseList)
+                    {
+                        <option value="@nurses.NurseId">@nurses.FirstName</option>
+                    }
+                </select>
+
+                </div>
+            <input type="submit" value="Save">
+        </form>
+    </div>
+</div>

@@ -1,0 +1,78 @@
+﻿* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+header{
+    font-family:Rubik, sans-serif;
+    color: #333;
+    font-size: 18px;
+    display: grid;
+    grid-template-columns: 8px 250px 1fr;
+    grid-template-rows: 80px 1fr;
+    height: 100vh;
+    text-align: center;
+    font-weight: bold;
+}
+nav,
+section,
+aside,
+main {
+    padding: 20px;
+}
+
+nav {
+    background-color: #e3fafc;
+    grid-row: 1/-1;
+    color: #e3fafc;
+}
+
+menu {
+    background-color: #e3fafc;
+    color: #fff;
+    grid-column: 2/-1;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 0 40px;
+}
+button {
+    font-size: 16px;
+    background-color: #5f3dc4;
+    border: none;
+    cursor: pointer;
+    color: #fff;
+    padding: 8px 12px;
+    display: inline-block;
+    font-weight: bold;
+}
+button:last-child {
+        background-color: #c2255c;
+        margin-left: auto;
+}
+
+section {
+    background-color: #fff;
+    padding: 20px;
+    overflow: scroll;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.Item {
+    background-color: #f8f9fa;
+    height: 60px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.Item:hover
+.Item:visited  
+{
+    background-color:forestgreen;
+    color:#fff;
+    padding:2px;
+    border-radius:5px;
+}
+

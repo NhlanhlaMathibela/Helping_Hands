@@ -1,0 +1,82 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css" integrity="sha256-2XFplPlrFClt0bIdPgpz8H7ojnk10H69xRqd9+uTShA=" crossorigin="anonymous" />
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="~/css/PatientDashboard.css" />
+
+    <script type="module"
+            src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule
+            src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="~/js/site.js"></script>
+</head>
+<body>
+    <div class='dashboard'>
+        <div class="dashboard-nav">
+            <header>
+                <a href="#!" class="menu-toggle"><i class="fas fa-bars"></i></a><a href="#"
+                                                                                   class="brand-logo">
+                    <span>Helping Hands</span>
+                </a>
+            </header>
+            <nav class="dashboard-nav-list">
+                <a href="#" class="dashboard-nav-item">
+                    <i class="fas fa-home"></i>
+                    Home
+                </a><a href="#" class="dashboard-nav-item active">
+                    <i class="fas fa-tachometer-alt"></i> OFFICE MANAGER
+                </a>
+                <div class='dashboard-nav-dropdown'>
+                    <a href="#!" class="dashboard-nav-item dashboard-nav-dropdown-toggle">
+                        <i class="fas fa-users"></i> Nurses
+                    </a>
+                    <div class='dashboard-nav-dropdown-menu'>
+                        <a href="~/OfficeManager/AddNurses"
+                           class="dashboard-nav-dropdown-item">Register Nurse</a><a href="#" class="dashboard-nav-dropdown-item">Nurse Visits</a>
+                    </div>
+                </div>
+                <div class='dashboard-nav-dropdown'>
+                    <a href="#!" class="dashboard-nav-item dashboard-nav-dropdown-toggle">
+                        <i class="fas fa-heartbeat"></i>  Conditions
+                    </a>
+                    <div class='dashboard-nav-dropdown-menu'>
+                        <a href="#"
+                           class="dashboard-nav-dropdown-item">Manage conditions</a>
+                    </div>
+                </div>
+                <div class='dashboard-nav-dropdown'>
+                    <a href="#!" class="dashboard-nav-item dashboard-nav-dropdown-toggle">
+                        <i class="fas fa-book"> </i> Care Contracts
+                    </a>
+                    <div class='dashboard-nav-dropdown-menu'>
+                        <a href="#"
+                           class="dashboard-nav-dropdown-item">New Contracts</a><a href="/Dashboard/Patient" class="dashboard-nav-dropdown-item">Assigned Contracts</a>
+                    </div>
+                </div>
+                <div class='dashboard-nav-dropdown'>
+                    <a href="#!" class="dashboard-nav-item dashboard-nav-dropdown-toggle">
+                        <i class="fas fa-file"></i> Reports
+                    </a>
+                    <div class='dashboard-nav-dropdown-menu'>
+                        <a href="/OfficeManager/ViewSuburbs"
+                           class="dashboard-nav-dropdown-item">All</a><a href="#" class="dashboard-nav-dropdown-item">Recent</a><a href="#" class="dashboard-nav-dropdown-item"> Wound Progress</a>
+                    </div>
+                </div>
+
+                <div class="nav-item-divider"></div>
+                <a href="#" class="dashboard-nav-item"><i class="fas fa-sign-out-alt"></i> Logout </a>
+            </nav>
+        </div>
+
+
+        <div style="width: 100%" class="main-app">
+            @RenderBody()
+        </div>
+</body>
+</html>

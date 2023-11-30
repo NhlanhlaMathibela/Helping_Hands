@@ -1,0 +1,179 @@
+﻿@model IEnumerable<HelpingHands.Models.UserModel>
+
+@{
+    ViewData["Title"] = "All Users";
+    Layout = "~/Views/Shared/_Dashboards.cshtml";
+}
+   
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css" integrity="sha256-2XFplPlrFClt0bIdPgpz8H7ojnk10H69xRqd9+uTShA=" crossorigin="anonymous" />
+
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
+
+
+</head>
+
+<div class='dashboard-app'>
+    <header class='dashboard-toolbar'>
+        <a href="#!" class="menu-toggle"><i class="fas fa-bars"></i></a>
+    </header>
+    <div class='dashboard-content'>
+        <div class='container'>
+
+
+     <button>
+       <a asp-action="AddUsers">Register a new Employee</a>
+     </button>
+
+            <div class="form-group">
+                <label for="suburbFilter">Filter by Suburb Name:</label>
+                <input type="text" class="form-control" id="suburbFilter" placeholder="Enter Suburb Name">
+            </div>
+            <div id="userTable">
+            <table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+          
+            <th>
+                @Html.DisplayNameFor(model => model.Username )
+            </th>
+          
+            <th>
+                @Html.DisplayNameFor(model => model.EmailAddress)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ContactNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UserType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+         
+            <td>
+                @Html.DisplayFor(modelItem => item.Username)
+            </td>
+         
+            <td>
+                @Html.DisplayFor(modelItem => item.EmailAddress)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ContactNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                <div class="btn-group">
+                                    @Html.ActionLink("Update", "AddUsers", new { id=item.UserId } ,new { @class = "btn btn-primary margin-left:2px;" })
+                </div>
+                
+            </td>
+
+        </tr>
+}
+    </tbody>
+               
+
+</table>
+                <nav aria-label="User pagination">
+                    <ul class="pagination justify-content-center">
+                    </ul>
+                </nav>
+</div>
+    </div>
+</div>
+</div>
+   
+
+    <script>
+        $(document).ready(function () {
+            // Get the table and pagination elements
+            var table = document.getElementById("userTable");
+            var pagination = document.querySelector(".pagination");
+
+            // Set the number of items per page
+            var itemsPerPage = 10;
+
+            // Calculate the number of pages
+            var pageCount = Math.ceil(table.rows.length / itemsPerPage);
+
+            // Generate the pagination links
+            for (var i = 1; i <= pageCount; i++) {
+                var li = document.createElement("li");
+                var link = document.createElement("a");
+                link.href = "#";
+                link.innerText = i;
+                li.appendChild(link);
+                pagination.appendChild(li);
+            }
+
+            // Show the first page by default
+            showPage(1);
+
+            // Function to show the specified page
+            function showPage(page) {
+                // Hide all rows
+                for (var i = 0; i < table.rows.length; i++) {
+                    table.rows[i].style.display = "none";
+                }
+
+                // Calculate the start and end indexes of the current page
+                var startIndex = (page - 1) * itemsPerPage;
+                var endIndex = startIndex + itemsPerPage;
+
+                // Show the rows for the current page
+                for (var i = startIndex; i < endIndex && i < table.rows.length; i++) {
+                    table.rows[i].style.display = "";
+                }
+            }
+
+            // Add click event listeners to the pagination links
+            var links = pagination.getElementsByTagName("a");
+            for (var i = 0; i < links.length; i++) {
+                links[i].addEventListener("click", function (event) {
+                    event.preventDefault();
+                    var page = parseInt(this.innerText);
+                    showPage(page);
+                });
+            }
+        });
+    </script>
+
+<script>
+    // Get the input field and table
+    const suburbFilterInput = document.getElementById('suburbFilter');
+    const table = document.querySelector('.table');
+
+    // Add an event listener to the input field
+    suburbFilterInput.addEventListener('input', function () {
+        const filterValue = this.value.toLowerCase();
+
+        // Get all the rows in the table body
+        const rows = table.querySelectorAll('tbody tr');
+
+        // Loop through each row and check if the Suburb Name matches the filter value
+        rows.forEach(function (row) {
+            const suburbName = row.querySelector('td:nth-child(5)').textContent.toLowerCase();
+
+            if (suburbName.includes(filterValue)) {
+                row.style.display = ''; // Show the row
+            } else {
+                row.style.display = 'none'; // Hide the row
+            }
+        });
+    });
+</script>

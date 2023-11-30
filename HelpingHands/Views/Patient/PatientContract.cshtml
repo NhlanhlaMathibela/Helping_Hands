@@ -1,0 +1,78 @@
+﻿@model IEnumerable<HelpingHands.Models.PatientCareContract>
+
+@{
+    ViewData["Title"] = "PatientContract";
+    Layout = "~/Views/Shared/_Patient.cshtml";
+}
+
+<head>
+
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css" integrity="sha256-2XFplPlrFClt0bIdPgpz8H7ojnk10H69xRqd9+uTShA=" crossorigin="anonymous" />
+
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+
+</head>
+<div class='dashboard-app'>
+    <header class='dashboard-toolbar'><a href="#!" class="menu-toggle"><i class="fas fa-bars"></i></a></header>
+    <div class='dashboard-content'>
+        <div class='container'>
+
+<h1>Patient Contract</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ContractDate)
+            </th>
+          
+            <th>
+                @Html.DisplayNameFor(model => model.AddLine1)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AddLine2)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Suburb)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.WoundDesc)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ContractDate)
+            </td>
+           
+            <td>
+                @Html.DisplayFor(modelItem => item.AddLine1)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AddLine2)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SuburbName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.WoundDesc)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+</div>
+</div>

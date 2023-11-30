@@ -1,0 +1,82 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="~/css/PatientDashboard.css" />
+    <script type="module"
+            src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule
+            src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="~/js/site.js"></script>
+</head>
+<body>
+    <div class='dashboard'>
+        <div class="dashboard-nav">
+            <header>
+                <a href="#!" class="menu-toggle"><i class="fas fa-bars"></i></a><a href="#"
+                                                                                   class="brand-logo">
+                    <span>Helping Hands</span>
+                </a>
+            </header>
+            <nav class="dashboard-nav-list">
+                <a href="~/Dashboards/Nurse" class="dashboard-nav-item">
+                    <i class="fas fa-home"></i>
+                    Home
+                </a><a href="#" class="dashboard-nav-item active">
+                    <i class="fas fa-tachometer-alt"></i>NURSE DASHBOARD
+                </a>
+                <div class='dashboard-nav-dropdown'>
+                    <a href="#!" class="dashboard-nav-item dashboard-nav-dropdown-toggle"> <i class="fas fa-user"></i>My Profile</a>
+                    <div class='dashboard-nav-dropdown-menu'>
+                        <a href="~/Nurse/ViewProfile"
+                           class="dashboard-nav-dropdown-item">View My profile</a><a href="/Dashboard/Patient" class="dashboard-nav-dropdown-item">Change Password</a>
+                        <a href="~/Nurse/SavePreferredSuburb"
+                      class="dashboard-nav-dropdown-item">My Suburbs</a>
+                    </div>
+                    </div>
+               
+                <div class='dashboard-nav-dropdown'>
+                    <a href="#!" class="dashboard-nav-item dashboard-nav-dropdown-toggle">
+                        <i class="fas fa-book"></i>Care Contract
+                    </a>
+                    <div class='dashboard-nav-dropdown-menu'>
+                        <a href="~/Nurse/ViewContractsBySuburb"
+                           class="dashboard-nav-dropdown-item">View all contracts</a><a href="~/Nurse/ApprovedContracts" class="dashboard-nav-dropdown-item">Approved contracts</a><a href="#"
+                        class="dashboard-nav-dropdown-item">Cancel Contract</a><a href="#" class="dashboard-nav-dropdown-item">Contract Status</a>
+                    </div>
+                </div>
+                <div class='dashboard-nav-dropdown'>
+                    <a href="#!" class="dashboard-nav-item dashboard-nav-dropdown-toggle">
+                        <i class="fas fa-calendar"></i> Care Visits
+                    </a>
+                    <div class='dashboard-nav-dropdown-menu'>
+                        <a href="~/Nurse/ViewCareVisit"
+                           class="dashboard-nav-dropdown-item">Schedule Visit</a><a href="#" class="dashboard-nav-dropdown-item">Update Visit</a><a href="#" class="dashboard-nav-dropdown-item">Cancel Visit</a>
+                    </div>
+                </div>
+                <div class='dashboard-nav-dropdown'>
+                    <a href="#!" class="dashboard-nav-item dashboard-nav-dropdown-toggle">
+                        <i class="fas fa-file"></i>
+                     Reports
+                    </a>
+                    <div class='dashboard-nav-dropdown-menu'>
+                        <a href="/OfficeManager/ViewSuburbs"
+                           class="dashboard-nav-dropdown-item">Care Visits</a><a href="#" class="dashboard-nav-dropdown-item">Patients</a><a href="#" class="dashboard-nav-dropdown-item"></a>
+                    </div>
+                </div>
+
+                <div class="nav-item-divider"></div>
+                <a href="#" class="dashboard-nav-item"><i class="fas fa-sign-out-alt"></i> Logout </a>
+            </nav>
+        </div>
+
+        <div style="width: 100%" class="main-app">
+            @RenderBody()
+        </div>
+</body>
+</html>

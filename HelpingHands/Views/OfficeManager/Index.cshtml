@@ -1,0 +1,24 @@
+﻿@model HelpingHands.Models.CitySuburbViewModel
+
+@using (Html.BeginForm())
+{
+    @Html.DropDownListFor(x => x.SelectedCityId, new SelectList(Model.Cities,"Value","Text"), "Select City..")
+    @Html.DropDownListFor(x => x.SelectedSuburbId, new SelectList(Model.Suburbs, "Value", "Text"), "Select Suburb..")
+    <button type="submit">Save</button>
+}
+
+<script type="text/javascript">
+    $(function () {
+        $("#SelectedCityId").change(function () {
+            var selectedCity = $(this).val();
+            $.getJSON("@Url.Action("GetSuburbs","YourController")", { cityId: selectedCity }, function (data) {
+                var suburbItems = "";
+                $.each(data, function (index, item) {
+                    suburbItems += "<option value='" + item.Value + "'>" + item.Text + "</option>"
+                });
+                $("#SelectedSuburbId").html(suburbItems);
+            });
+        });
+    });
+</script>
+

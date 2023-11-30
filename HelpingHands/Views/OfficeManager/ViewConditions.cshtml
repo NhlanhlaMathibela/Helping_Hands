@@ -1,0 +1,66 @@
+﻿@model IEnumerable<HelpingHands.Models.Conditions>
+
+@{
+    ViewData["Title"] = "ViewConditions";
+    Layout = "~/Views/Shared/_OfficeManager.cshtml";
+}
+<head>
+
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css" integrity="sha256-2XFplPlrFClt0bIdPgpz8H7ojnk10H69xRqd9+uTShA=" crossorigin="anonymous" />
+
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+
+</head>
+
+
+<div class='dashboard-app'>
+    <header class='dashboard-toolbar'>
+        <a href="#!" class="menu-toggle"><i class="fas fa-bars"></i></a>
+    </header>
+    <div class='dashboard-content'>
+        <div class='container'>
+ 
+<h2>View Conditions</h2>
+
+<p>
+                <a class="btn btn-primary" asp-action="AddCondition">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+         
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+          
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }, new {@class = "btn btn-primary"}) 
+                                @*@Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }, new {@class = "btn btn-info"}) |*@
+                             
+
+
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+</div>
+</div>
+</div>

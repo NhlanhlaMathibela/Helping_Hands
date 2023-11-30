@@ -1,0 +1,90 @@
+﻿@model HelpingHands.Models.CareVisit
+
+@{
+    ViewData["Title"] = "Update Care Visits";
+    Layout = "~/Views/Shared/_Nurse.cshtml";
+
+}
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css" integrity="sha256-2XFplPlrFClt0bIdPgpz8H7ojnk10H69xRqd9+uTShA=" crossorigin="anonymous" />
+
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+</head>
+
+
+<div class='dashboard-app'>
+    <header class='dashboard-toolbar'>
+        <a href="#!" class="menu-toggle"><i class="fas fa-bars"></i></a>
+    </header>
+    <div class='dashboard-content'>
+        <div class='container'>
+            <h3>Update Care Visit</h3>
+
+            <hr />
+            <div class="row">
+                <div class="col-md-4">
+                    <form asp-action="UpdateCareVisit">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <input asp-for="@Model.CareVisitId" value="@Model.CareVisitId" hidden />
+                        <input asp-for="@Model.ContractId" value="@Model.ContractId" hidden />
+                        <div class="form-group">
+                            <label asp-for="ApproxArrivalTime" class="control-label"></label>
+                            <input asp-for="ApproxArrivalTime" type="time" class="form-control" />
+                            <span asp-validation-for="ApproxArrivalTime" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="ArriveTime" class="control-label"></label>
+                            <input asp-for="ArriveTime" type="time" class="form-control" />
+                            <span asp-validation-for="ArriveTime" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="DepartTime" class="control-label"></label>
+                            <input asp-for="DepartTime" type="time" class="form-control" />
+                            <span asp-validation-for="DepartTime" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="WoundDesc" class="control-label"></label>
+                            <textarea asp-for="WoundDesc" class="form-control"></textarea>
+                            <span asp-validation-for="WoundDesc" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Notes" class="control-label"></label>
+                            <textarea asp-for="Notes" class="form-control"></textarea>
+                            <span asp-validation-for="Notes" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" value="Update" class="btn btn-primary" />
+                        </div>
+
+                        
+
+
+                    </form>
+
+                   
+                </div>
+            </div>
+
+            <div>
+
+             
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        var today = new Date();
+        var dd = String(today.getDate()).padStart(2, '0');
+        var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+        var yyyy = today.getFullYear();
+
+        today = yyyy + '-' + mm + '-' + dd;
+        document.getElementById("ContractDate").value = today;
+    </script>
+

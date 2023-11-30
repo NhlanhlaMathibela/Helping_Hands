@@ -1,0 +1,104 @@
+﻿@model IEnumerable<HelpingHands.Models.NurseContracts>
+
+@{
+    ViewData["Title"] = "AssignedContracts";
+    Layout = "~/Views/Shared/_Nurse.cshtml";
+}
+<head>
+   
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css" integrity="sha256-2XFplPlrFClt0bIdPgpz8H7ojnk10H69xRqd9+uTShA=" crossorigin="anonymous" />
+
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+</head>
+
+<div class='dashboard-app'>
+    <header class='dashboard-toolbar'>
+        <a href="#!" class="menu-toggle"><i class="fas fa-bars"></i></a>
+    </header>
+    <div class='dashboard-content'>
+        <div class='container'>
+
+                <h3 class="btn btn-success">My Assigned Contracts</h3>
+
+                <div class="form-group">
+                    <label for="suburbFilter">Filter by Suburb Name:</label>
+                    <input type="text" class="form-control" id="suburbFilter" placeholder="Enter Suburb Name">
+                </div>
+                <table class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.AssignedDate)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Patient)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Address)
+                            </th>
+                            
+
+                            <th>Contract Status</th>
+
+                        <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @item.AssignedDate.ToString("dd/MM/yyyy")
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Patient)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Address)
+                                </td>
+                                
+                               
+                                <td>
+                                    <div class="btn-group">
+                                    <a asp-action="ViewCareVisit" asp-controller="Nurse" asp-route-id="@item.CareContractId" class="btn btn-primary">Visits</a>
+                                </div>
+                                </td>
+
+                            <td>
+                                <button class="btn btn-danger margin-left:2px;" onclick="showConfirmationDialog('@item.CareContractId')">Cancel</button>
+
+                            </td>
+
+                            </tr>
+                        }
+                    </tbody>
+                </table>       
+        </div>
+    </div>
+</div>
+
+<script>
+    function showConfirmationDialog(contractId) {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You want to cancel this Care Contract!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, cancel it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = '/ApprovedContracts?id=' + contractId;
+            }
+        });
+    }
+</script>
+
+
+
+
+

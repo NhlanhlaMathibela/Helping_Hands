@@ -1,0 +1,122 @@
+﻿@model IEnumerable<HelpingHands.Models.OfficeManager>
+
+@{
+    ViewData["Title"] = "View New Contracts";
+    Layout = "~/Views/Shared/_OfficeManager.cshtml";
+}
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css" integrity="sha256-2XFplPlrFClt0bIdPgpz8H7ojnk10H69xRqd9+uTShA=" crossorigin="anonymous" />
+
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+
+<div class='dashboard-app'>
+    <header class='dashboard-toolbar'>
+        <a href="#!" class="menu-toggle"><i class="fas fa-bars"></i></a>
+    </header>
+    <div class='dashboard-content'>
+        <div class='container'>
+
+
+            @if (Model.Count() == 0)
+            {
+                
+                    <h3>Hello,you have no new contracts in your preferred Suburbs at the moment</h3>
+                    <p>
+                        <a asp-action="ApprovedContracts" class="btn btn-primary">View Your Assigned Contracts Instead</a>
+                </p>
+
+            }
+            else
+            {
+                <h3 class="btn btn-success">New Contracts</h3>
+
+                <p>
+                    <a asp-action="ApprovedContracts" class="btn btn-primary">View Your Assinged Contracts</a>
+                </p>
+                <div class="form-group">
+                    <label for="suburbFilter">Filter by Suburb Name:</label>
+                    <input type="text" class="form-control" id="suburbFilter" placeholder="Enter Suburb Name">
+                </div>
+                <table class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.ContractDate)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Name)
+                            </th>
+
+
+                            <th>
+                                @Html.DisplayNameFor(model => model.SuburbName)
+                            </th>
+
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @item.ContractDate.ToString("dd/MM/yyyy")
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Name)
+                                </td>
+
+
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.SuburbName)
+                                </td>
+
+                                <td>
+                                    <div class="btn-group">
+                                        @Html.ActionLink("Assign", "UpdateCareContract", new { id = item.CareContractId }, new { @class = "btn btn-primary margin-left:2px;" })
+
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+
+                
+            }
+                
+            
+          </div>
+    </div>
+</div>
+
+<script>
+    // Get the input field and table
+    const suburbFilterInput = document.getElementById('suburbFilter');
+    const table = document.querySelector('.table');
+
+    // Add an event listener to the input field
+    suburbFilterInput.addEventListener('input', function () {
+        const filterValue = this.value.toLowerCase();
+
+        // Get all the rows in the table body
+        const rows = table.querySelectorAll('tbody tr');
+
+        // Loop through each row and check if the Suburb Name matches the filter value
+        rows.forEach(function (row) {
+            const suburbName = row.querySelector('td:nth-child(5)').textContent.toLowerCase();
+
+            if (suburbName.includes(filterValue)) {
+                row.style.display = ''; // Show the row
+            } else {
+                row.style.display = 'none'; // Hide the row
+            }
+        });
+    });
+</script>
+
+
+
+

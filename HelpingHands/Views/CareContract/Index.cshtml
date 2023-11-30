@@ -1,0 +1,21 @@
+﻿@model IEnumerable<CareContractPatient>
+
+<table>
+    <thead>
+        <tr>
+            <th>Date</th>
+            <th>Patient Name</th>
+            <th>Wound Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var careContract in Model)
+        {
+            <tr>
+                <td>@careContract.ContractDate</td>
+                <td>@careContract.FirstName</td>
+                <td>@careContract.WoundDesc</td>
+            </tr>
+        }
+    </tbody>
+</table>

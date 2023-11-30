@@ -1,0 +1,75 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+<style>
+
+    .hero-section {
+        background-color: #edf2ff;
+    
+     padding: 4.8rem 0 9.6rem 0;
+    }
+
+  .hero {
+  max-width: 130rem;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 9.6rem;
+  align-items: center;
+  padding: 0 3.2rem;
+  }
+  .heading-primary{
+   font-weight: 700;
+  color: #333;
+  letter-spacing: 0.5px;
+  }
+
+   .hero-description {
+      font-size: 1.5rem;
+     line-height: 1.4;
+     margin-bottom: 4.8rem;
+   }
+
+  .hero-img {
+  width: 100%;
+  }
+ 
+.btn{
+  display: inline-block;
+  text-decoration: none;
+  font-size: 2rem;
+  padding: 1.6rem 3.2rem;
+  border-radius: 9px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+        background-color: #087f5b;
+  color: #fff;
+  }
+
+.btn:hover,
+.btn:active {
+ background-color: #12b886;
+}
+</style>
+<section class="hero-section">
+    <div class="hero">
+        <div class="hero-text-box">
+            <h1 class="heading-primary">
+                Helping hands
+            </h1>
+            <p class="hero-description">
+                Helping hands is a non-profit organization helping those in need of primary care
+                in the comfort of their home.
+               </p>
+               <a class="btn">Read our story</a>
+
+        </div>
+       <div class="hero-img-box">
+           <img class="hero-img" src="~/Images/LandingPageImage.png" alt="A picture of Nurses and Patients" /> 
+
+       </div> 
+
+
+    </div>
+    </section>

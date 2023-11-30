@@ -1,0 +1,86 @@
+﻿@model IEnumerable<HelpingHands.Models.CareVisit>
+
+@{
+    ViewData["Title"] = "Care Visits";
+    Layout = "~/Views/Shared/_Nurse.cshtml";
+}
+<head>
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css" integrity="sha256-2XFplPlrFClt0bIdPgpz8H7ojnk10H69xRqd9+uTShA=" crossorigin="anonymous" />
+
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+</head>
+
+<div class='dashboard-app'>
+    <header class='dashboard-toolbar'>
+        <a href="#!" class="menu-toggle"><i class="fas fa-bars"></i></a>
+    </header>
+    <div class='dashboard-content'>
+        <div class='container'>
+
+            <h3 class="btn btn-success">Care Visits</h3>
+
+            <div class="form-group">
+                <label for="suburbFilter">Filter by Suburb Name:</label>
+                <input type="text" class="form-control" id="suburbFilter" placeholder="Enter Suburb Name">
+            </div>
+            <table class="table table-bordered table-striped">
+
+                <thead>
+                    <tr>
+
+                     
+
+
+                        <th>
+                            @Html.DisplayNameFor(model => model.WoundDesc)
+                        </th>
+
+                        <th>
+                            @Html.DisplayNameFor(model => model.Notes)
+                        </th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+
+                            
+                            <td>
+                                @Html.DisplayFor(modelItem => item.WoundDesc)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Notes)
+                            </td>
+
+                       
+
+                            <td>
+                                <button class="btn btn-danger margin-left:2px;" onclick="showConfirmationDialog('@item.CareContractId')">Cancel</button>
+
+                            </td>
+
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+           @* <p>
+                <div class="btn-group">
+                    <a asp-action="AddCareVisit" asp-controller="Nurse" asp-route-id="@ViewBag.Id" class="btn btn-primary">Add new Contract</a>
+                </div>
+            </p>*@
+
+
+        </div>
+    </div>
+</div>
+
+
+
+

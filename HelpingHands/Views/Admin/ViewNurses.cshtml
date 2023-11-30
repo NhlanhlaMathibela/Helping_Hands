@@ -1,0 +1,118 @@
+﻿@model IEnumerable<HelpingHands.Models.UserModel>
+
+@{
+    ViewData["Title"] = "ViewNurses";
+    Layout = "~/Views/Shared/_Dashboards.cshtml";
+}
+
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css" integrity="sha256-2XFplPlrFClt0bIdPgpz8H7ojnk10H69xRqd9+uTShA=" crossorigin="anonymous" />
+
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+
+</head>
+
+<div class='dashboard-app'>
+    <header class='dashboard-toolbar'>
+        <a href="#!" class="menu-toggle"><i class="fas fa-bars"></i></a>
+    </header>
+    <div class='dashboard-content'>
+        <div class='container'>
+
+
+            <button>
+                <a asp-action="AddUsers">Add a New Nurse</a>
+            </button>
+
+            <div class="form-group">
+                <label for="search">Search:</label>
+                <input type="text" class="form-control" id="search" placeholder="Enter search term">
+            </div>
+
+
+            <table class="table table-bordered table-striped" id="userTable">
+
+                    <thead>
+                        <tr>
+
+                            <th>
+                                @Html.DisplayNameFor(model => model.Username )
+                            </th>
+
+                            <th>
+                                @Html.DisplayNameFor(model => model.EmailAddress)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.ContactNumber)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.UserType)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Status)
+                            </th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Username)
+                                </td>
+
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.EmailAddress)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ContactNumber)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.UserType)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Status)
+                                </td>
+                                <td>
+                                    <div class="btn-group">
+                                        @Html.ActionLink("Update", "AddUsers", new { id=item.UserId } ,new { @class = "btn btn-primary margin-left:2px;" })
+                                    </div>
+
+                                </td>
+
+                            </tr>
+                        }
+                    </tbody>
+
+
+                </table>
+             
+            </div>
+        </div>
+    </div>
+
+
+
+
+<script>
+    $(document).ready(function () {
+        $("#search").on("keyup", function () {
+            var value = $(this).val().toLowerCase();
+            $("#userTable tbody tr").filter(function () {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
+    });
+</script>
+
+
+
+
+
+
+
+

@@ -1,0 +1,114 @@
+﻿@model HelpingHands.Models.PatientCareContract
+
+@{
+    ViewData["Title"] = "Request a care contract";
+    Layout = "~/Views/Shared/_Patient.cshtml";
+   
+}
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css" integrity="sha256-2XFplPlrFClt0bIdPgpz8H7ojnk10H69xRqd9+uTShA=" crossorigin="anonymous" />
+
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+</head>
+
+
+<div class='dashboard-app'>
+    <header class='dashboard-toolbar'>
+        <a href="#!" class="menu-toggle"><i class="fas fa-bars"></i></a>
+    </header>
+    <div class='dashboard-content'>
+        <div class='container'>
+<p>Request Care</p>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="AddCareContract">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="form-group">
+                            <label asp-for="ContractDate" class="control-label"></label>
+                            <input asp-for="ContractDate" type="date" id="ContractDate" name="ContractDate" class="form-control" readonly />
+                        </div>
+            
+            <div class="form-group">
+                <label asp-for="AddLine1" class="control-label"></label>
+                <input asp-for="AddLine1" class="form-control" />
+                <span asp-validation-for="AddLine1" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AddLine2" class="control-label"></label>
+                <input asp-for="AddLine2" class="form-control" />
+                <span asp-validation-for="AddLine2" class="text-danger"></span>
+            </div>
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-goup">
+                <label asp-for="Suburb">Suburb</label>
+                <select asp-for="Suburb" class="form-control ">
+                    <option value="" selected>--Select Suburb--</option>
+                    @foreach (var suburb in ViewBag.SuburbList)
+                    {
+                        <option value="@suburb.SuburbId">@suburb.SuburbName</option>
+                    }
+                </select>
+
+            </div>
+       
+            <div class="form-group">
+                <label asp-for="WoundDesc" class="control-label"></label>
+                            <textarea asp-for="WoundDesc" class="form-control"></textarea>
+                <span asp-validation-for="WoundDesc" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+                        </div>   
+                        
+                        <div class="form-group">
+                            <a class="btn btn-primary" asp-action="PatientContract">My Contract</a>
+                        </div>
+
+
+        </form>
+    </div>
+</div>
+
+<div>
+
+                @{
+                    if (TempData["SuccessMessage"] != null)
+                    {
+                        <script type="text/javascript">
+                            Swal.fire({
+                                title: 'Success!',
+                                text: '@TempData["SuccessMessage"].ToString()',
+                                icon: 'success',
+                                confirmButtonText: 'OK'
+
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    window.location.href = "@Url.Action("ViewNurses", "Admin")";
+                                }
+                            });
+                        </script>
+                    }
+                }
+</div>
+</div>
+</div>
+
+
+    <script>
+        var today = new Date();
+        var dd = String(today.getDate()).padStart(2, '0');
+        var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+        var yyyy = today.getFullYear();
+
+        today = yyyy + '-' + mm + '-' + dd;
+        document.getElementById("ContractDate").value = today;
+    </script>
+

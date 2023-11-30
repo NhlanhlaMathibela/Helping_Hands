@@ -1,0 +1,129 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+.nav-item{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 500;
+ 
+}
+.navbar {
+    border-bottom: 2px solid #087f5b;
+}
+.navbar-nav {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 3.2rem;
+}
+
+.nav-link:link,
+.nav-link:visited {
+    display: inline-block;
+    text-decoration: none;
+    color: yellowgreen;
+    font-size: 1.8rem;
+    font-weight: 500;
+    transition: all 0.3s;
+}
+
+.nav-link:hover,
+.nav-link:active {
+    color: green;
+}
+
+.main-nav-link.nav-cta:link,
+.main-nav-link.nav-cta:visited {
+    padding: 1.2rem 2.4rem;
+    border-radius: 9px;
+    color: #fff;
+    background-color: #e67e22;
+}
+
+.main-nav-link.nav-cta:hover,
+.main-nav-link.nav-cta.btn--outline:active {
+    background-color: #cf711f;
+}
+/*.container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}*/
+body {
+    font-family: "Rubik", sans-serif;
+    line-height: 1;
+    font-weight: 400;
+    color: #555;
+    margin-bottom: 60px;
+    background-color: aliceblue
+}
+
+    
+.nav-link:hover {
+    background-color: #ebfbee;
+}
+@media print {
+    body * {
+        visibility: hidden;
+    }
+
+    #printTable, #printTable * {
+        visibility: visible;
+    }
+
+    #printTable {
+        position: absolute;
+        left: 0;
+        top: 0;
+    }
+}
+@media print {
+    #printTable {
+        font-family: Arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+        #printTable td, #printTable th {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
+        #printTable tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        #printTable th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #4CAF50;
+            color: white;
+        }
+}
+
+.nav-link {
+    border-radius: 10px;
+    padding: 10px 20px;
+    border: none;
+    color: black;
+    text-decoration: none;
+}
+.nav-item {
+    border: 1px solid #d3f9d8;
+    border-radius: 10px;
+}
+
